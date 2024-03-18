@@ -3,6 +3,7 @@ import MaxWidthWrapper from "./MaxWidthWrapper";
 import { Icons } from "./Icons";
 import NavItems from "./NavItems";
 import { buttonVariants } from "./ui/button";
+import Cart from "./Cart";
 
 const Navbar = () => {
   const user = null;
@@ -15,9 +16,9 @@ const Navbar = () => {
             <div className="flex h-16 items">
               {/*TODO: Mobile nav */}
 
-              <div className="ml-4 flex lg:ml-0">
+              <div className="ml-4 flex lg:ml-0 lg:items-center">
                 <Link href="/">
-                  <Icons.logo className="h-10 w-10" />
+                  <Icons.logo className="h-10 w-10 " />
                 </Link>
               </div>
               <div className="hidden z-50 lg:ml-g lg:block lg:self-stretch">
@@ -57,7 +58,9 @@ const Navbar = () => {
                       />
                     </div>
                   )}
-                  <div className="ml-4 flow-root lg:ml-6">{/* <Cart/> */}</div>
+                  <div className="ml-4 flow-root lg:ml-6">
+                    <Cart />
+                  </div>
                 </div>
               </div>
             </div>
