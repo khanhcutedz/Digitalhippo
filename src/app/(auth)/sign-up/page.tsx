@@ -15,6 +15,7 @@ import {
   TAuthCredentialsValidator,
 } from "@/lib/validators/account-credentials-validator";
 import { trpc } from "@/trpc/client";
+import { useRouter } from "next/navigation";
 const Page = () => {
   const {
     register,
@@ -24,11 +25,15 @@ const Page = () => {
     resolver: zodResolver(AuthCredentialsValidator),
   });
 
-  const { data } = trpc.anyApiRoute.useQuery();
-  console.log(data);
+  const router = useRouter();
+  const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({});
+
+  // const { data } = trpc.anyApiRoute.useQuery();
+  // console.log(data);
 
   const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
     //send data to the server
+    mutate({ email, password });
   };
 
   return (
@@ -68,6 +73,7 @@ const Page = () => {
                   <Label htmlFor="password">Password</Label>
                   <Input
                     {...register("password")}
+                    type="password"
                     className={cn({
                       "focus-visible:ring-red-500": errors.password,
                     })}
